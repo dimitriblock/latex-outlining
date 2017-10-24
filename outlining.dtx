@@ -27,19 +27,19 @@
 %
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage{outlining}[2017/10/23]
+\usepackage{outlining}
 \EnableCrossrefs         
 \CodelineIndex
 \RecordChanges
 \begin{document}
   \DocInput{outlining.dtx}
   \PrintChanges
-  \PrintIndex
+  %\PrintIndex
 \end{document}
 %</driver>
 % \fi
 %
-% \CheckSum{72}
+% \CheckSum{88}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -62,7 +62,7 @@
 %
 % \GetFileInfo{outlining.dtx}
 %
-% \DoNotIndex{\newcommand,\newenvironment}
+% \DoNotIndex{\newcommand,\newenvironment, \listoftodos, \DeclareOption, \clearpage, \AtBeginDocument, \AtEndDocument, \newcounter}
 % 
 %
 % \title{The \textsf{outlining} package\thanks{This document
@@ -74,7 +74,6 @@
 % \section{Introduction}
 %
 % Every scientifc document requires outlining before it is written. 
-% Every scientifc document requires outlining before it is written
 % The following paragraph shows outline plus final text.
 % 
 % \outlineTopics
@@ -92,12 +91,14 @@
 % \StopEventually{}
 %
 % \section{Implementation}
-%
+% Some internal macros:
 %    \begin{macrocode}
 \newcommand{\@disableOutlining}{}
 \newcommand{\@disableTopics}{}
 \newcommand{\@disableMajors}{}
 \newcommand{\@disableMinors}{}
+\newcommand{\@outlineAtBegin}{}
+\newcommand{\@outlineAtEnd}{}
 %    \end{macrocode}
 % \begin{macro}{disable}
 % Disable all package output
@@ -106,11 +107,27 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{outlineatbegin}
+% Outline at document begin
+%    \begin{macrocode}
+\DeclareOption{outlineatbegin}{\renewcommand{\@outlineAtBegin}{\listOutline}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{outlineatend}
+% Outline at document end
+%    \begin{macrocode}
+\DeclareOption{outlineatend}{\renewcommand{\@outlineAtEnd}{\listOutline}}
+%    \end{macrocode}
+% \end{macro}
+%
 %    \begin{macrocode}
 \ProcessOptions\relax
 \usepackage[obeyFinal, \@disableOutlining]{todonotes}
 \newcounter{majornum}
 \newcounter{minornum}
+\AtBeginDocument{\@outlineAtBegin}
+\AtEndDocument{\@outlineAtEnd}
 %    \end{macrocode}
 %
 % \begin{macro}{\outlineTopics}

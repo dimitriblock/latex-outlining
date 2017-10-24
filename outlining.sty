@@ -25,11 +25,17 @@
 \newcommand{\@disableTopics}{}
 \newcommand{\@disableMajors}{}
 \newcommand{\@disableMinors}{}
+\newcommand{\@outlineAtBegin}{}
+\newcommand{\@outlineAtEnd}{}
 \DeclareOption{disable}{\renewcommand{\@disableOutlining}{disable}}
+\DeclareOption{outlineatbegin}{\renewcommand{\@outlineAtBegin}{\listOutline}}
+\DeclareOption{outlineatend}{\renewcommand{\@outlineAtEnd}{\listOutline}}
 \ProcessOptions\relax
 \usepackage[obeyFinal, \@disableOutlining]{todonotes}
 \newcounter{majornum}
 \newcounter{minornum}
+\AtBeginDocument{\@outlineAtBegin}
+\AtEndDocument{\@outlineAtEnd}
 \newcommand{\outlineTopics}{
 \renewcommand{\@disableTopics}{}
 \renewcommand{\@disableMajors}{disable}

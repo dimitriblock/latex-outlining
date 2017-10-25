@@ -90,6 +90,7 @@
 % \StopEventually{}
 %
 % \section{Implementation}
+%
 % Some internal macros:
 %    \begin{macrocode}
 \newcommand{\@disableOutlining}{}
@@ -99,6 +100,8 @@
 \newcommand{\@outlineAtBegin}{}
 \newcommand{\@outlineAtEnd}{}
 %    \end{macrocode}
+%
+% \subsection{Package Options}
 % \begin{macro}{disable}
 % Disable all package output
 %    \begin{macrocode}
@@ -120,9 +123,18 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{outlineatend}
+% Outline at document end
+%    \begin{macrocode}
+\DeclareOption{beamer}{\newcommand{\@beamer}{}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Activation Commands}
 %    \begin{macrocode}
 \ProcessOptions\relax
-\usepackage[obeyFinal, \@disableOutlining]{todonotes}
+\usepackage{xifthen}
+\ifthen{\isundefined{\@beamer}}{\usepackage[obeyFinal, \@disableOutlining]{todonotes}}
 \newcounter{majornum}
 \newcounter{minornum}
 \AtBeginDocument{\@outlineAtBegin}
@@ -160,6 +172,7 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\topic}
+% \subsection{Main Commands}
 % Topic
 %    \begin{macrocode}
 \newcommand{\topic}[1]
@@ -167,6 +180,15 @@
 {\textbf{#1}}}
 %    \end{macrocode}
 % \end{macro}
+% 
+% \begin{environment}{topic}
+% Instead 
+% \begin{macrocode}
+\newenvironment{topic}[1]{\setcounter{majornum}{0}\setcounter{minornum}{0}\todo[color=red!40, size=\footnotesize, inline,\@disableTopics]
+{\textbf{#1}}}{}
+% \end{macrocode}
+% \end{environment}
+%
 % \begin{macro}{\major}
 % Major point
 %    \begin{macrocode}

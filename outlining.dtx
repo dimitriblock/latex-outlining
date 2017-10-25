@@ -39,7 +39,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{88}
+% \CheckSum{89}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -76,12 +76,11 @@
 % Every scientifc document requires outlining before it is written. 
 % The following paragraph shows outline plus final text.
 % 
-% \outlineTopics
 % \topic{Best-practices outlines}
 % A best-practices are three level outlines.
 % \major{Each pararagraph shall have a single topic}
 % \major{Each topic consists of multiple major points}
-% \major{Major may have optional minor points}
+% \minor{Major may have optional minor points}
 %
 % \fbox{\begin{minipage}{0.5\textwidth} 
 % \listOutline
@@ -173,7 +172,7 @@
 %    \begin{macrocode}
 \newcommand{\major}[1]
 {\stepcounter{majornum}\setcounter{minornum}{0}\todo[color=green!10, size=\footnotesize, inline,\@disableMajors]
-{\themajornum \; #1}}
+{\textit{\themajornum \enspace #1}}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\minor}
@@ -181,7 +180,7 @@
 %    \begin{macrocode}
 \newcommand{\minor}[1]
 {\stepcounter{minornum}\todo[color=gray!10, size=\footnotesize, inline, \@disableMinors]
-{\themajornum.\theminornum \; #1}}
+{\themajornum.\theminornum \enspace #1}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\listOutline}

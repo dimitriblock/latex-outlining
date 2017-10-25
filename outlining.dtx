@@ -134,7 +134,7 @@
 %    \begin{macrocode}
 \ProcessOptions\relax
 \usepackage{xifthen}
-\ifthen{\isundefined{\@beamer}}{\usepackage[obeyFinal, \@disableOutlining]{todonotes}}
+\ifthenelse{\isundefined{\@beamer}}{\usepackage[obeyFinal, \@disableOutlining]{todonotes}}{}
 \newcounter{majornum}
 \newcounter{minornum}
 \AtBeginDocument{\@outlineAtBegin}

@@ -124,8 +124,8 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{outlineatend}
-% Outline at document end
+% \begin{macro}{beamer}
+% Prepare output as beamer frames
 %    \begin{macrocode}
 \DeclareOption{beamer}{\newcommand{\@beamer}{}}
 %    \end{macrocode}
@@ -194,16 +194,27 @@
 % Major point
 %    \begin{macrocode}
 \newcommand{\major}[1]
-{\stepcounter{majornum}\setcounter{minornum}{0}\todo[color=green!10, size=\footnotesize, inline,\@disableMajors]
-{\textit{\themajornum \enspace #1}}}
+{\ifthenelse{\isundefined{\@beamer}}
+  {\stepcounter{majornum}\setcounter{minornum}{0}\todo[color=green!10, size=\footnotesize, inline,\@disableMajors]
+    {\textit{\themajornum \enspace #1}}}
+  {\item #1}
+}
+  
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\minor}
 % Minor point
 %    \begin{macrocode}
 \newcommand{\minor}[1]
-{\stepcounter{minornum}\todo[color=gray!10, size=\footnotesize, inline, \@disableMinors]
-{\themajornum.\theminornum \enspace #1}}
+{\ifthenelse{\isundefined{\@beamer}}
+  {\stepcounter{minornum}\todo[color=gray!10, size=\footnotesize, inline, \@disableMinors]
+    {\themajornum.\theminornum \enspace #1}}
+   {
+    %\begin{itemize}
+    %	\item #1
+    %\end{itemize}
+   }
+}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\listOutline}

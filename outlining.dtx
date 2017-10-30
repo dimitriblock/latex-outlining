@@ -39,7 +39,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{89}
+% \CheckSum{131}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -225,6 +225,36 @@
 	\listoftodos[Document Outline]
 	\clearpage
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Statement Relations}
+%
+% \begin{macro}{\hence}
+% From statement A results in statement B
+%    \begin{macrocode}
+\newcommand{\hence}{$\Rightarrow$ }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\summary}
+% Summary of previous statements
+%    \begin{macrocode}
+\newcommand{\summary}{{\boldmath $\varSigma$} }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\resolved}
+% Requirement statement fullfilled
+%    \begin{macrocode}
+\newcommand{\resolved}{\textbf{\checkmark}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\missed}
+% Requirement statement not fullfilled
+%    \begin{macrocode}
+\newcommand{\missed}{\textbf{X}}
 %    \end{macrocode}
 % \end{macro}
 %

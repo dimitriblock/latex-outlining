@@ -76,11 +76,12 @@
 % Every scientifc document requires outlining before it is written. 
 % The following paragraph shows outline plus final text.
 % 
-% \topic{Best-practices outlines}
+% \begin{topic}[Best-practices outlines]
 % A best-practices are three level outlines.
 % \major{Each pararagraph shall have a single topic}
 % \major{Each topic consists of multiple major points}
 % \minor{Major may have optional minor points}
+% \end{topic}
 %
 % \fbox{\begin{minipage}{0.5\textwidth} 
 % \listOutline
@@ -171,22 +172,22 @@
 }
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\topic}
-% \subsection{Main Commands}
-% Topic
-%    \begin{macrocode}
-\newcommand{\topic}[1]
-{\setcounter{majornum}{0}\setcounter{minornum}{0}\todo[color=red!40, size=\footnotesize, inline,\@disableTopics]
-{\textbf{#1}}}
-%    \end{macrocode}
-% \end{macro}
-% 
+%
+% \subsection{Main Commands/Environment}
+%
 % \begin{environment}{topic}
-% Instead 
-% \begin{macrocode}
-\newenvironment{topic}[1]{\setcounter{majornum}{0}\setcounter{minornum}{0}\todo[color=red!40, size=\footnotesize, inline,\@disableTopics]
-{\textbf{#1}}}{}
-% \end{macrocode}
+% Topic environment containing major/minor points 
+%    \begin{macrocode}
+\newenvironment{topic}[1][]
+{\ifthenelse{\isundefined{\@beamer}}
+  {\setcounter{majornum}{0}\setcounter{minornum}{0}\todo[color=red!40, size=\footnotesize, inline,\@disableTopics]{\textbf{#1}}}
+  {\begin{frame}\frametitle{#1} \itemize\@newlistfalse}
+}
+{\ifthenelse{\isundefined{\@beamer}}
+  {}
+  {\enditemize \end{frame}}
+}
+%    \end{macrocode}
 % \end{environment}
 %
 % \begin{macro}{\major}
